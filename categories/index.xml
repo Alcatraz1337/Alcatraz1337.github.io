@@ -1,10 +1,29 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Categories on Lone Island</title>
+    <title>Categories on 岛</title>
     <link>https://alcatraz1337.github.io/categories/</link>
-    <description>Recent content in Categories on Lone Island</description>
+    <description>Recent content in Categories on 岛</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-CN</language><atom:link href="https://alcatraz1337.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <language>zh-CN</language>
+    <lastBuildDate>Wed, 28 Apr 2021 20:06:19 +0900</lastBuildDate><atom:link href="https://alcatraz1337.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>碎片</title>
+      <link>https://alcatraz1337.github.io/categories/fragments/</link>
+      <pubDate>Wed, 28 Apr 2021 20:06:19 +0900</pubDate>
+      
+      <guid>https://alcatraz1337.github.io/categories/fragments/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>随手拍</title>
+      <link>https://alcatraz1337.github.io/categories/pics/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://alcatraz1337.github.io/categories/pics/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>
