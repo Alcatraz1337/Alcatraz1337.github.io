@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Lone Island</title>
-        <link>https://example.com/</link>
+        <link>https://alcatraz1337.github.io/</link>
         <description>Recent content on Lone Island</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-CN</language>
-        <lastBuildDate>Wed, 28 Apr 2021 20:06:19 +0900</lastBuildDate><atom:link href="https://example.com/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 28 Apr 2021 20:06:19 +0900</lastBuildDate><atom:link href="https://alcatraz1337.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>降落</title>
-        <link>https://example.com/p/%E9%99%8D%E8%90%BD/</link>
+        <link>https://alcatraz1337.github.io/p/%E9%99%8D%E8%90%BD/</link>
         <pubDate>Wed, 28 Apr 2021 20:06:19 +0900</pubDate>
         
-        <guid>https://example.com/p/%E9%99%8D%E8%90%BD/</guid>
+        <guid>https://alcatraz1337.github.io/p/%E9%99%8D%E8%90%BD/</guid>
         <description></description>
         </item>
         
