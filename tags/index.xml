@@ -2,40 +2,40 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Tags on 岛</title>
-        <link>https://alcatraz1337.github.io/tags/</link>
+        <link>https://demo.stack.jimmycai.com/tags/</link>
         <description>Recent content in Tags on 岛</description>
         <generator>Hugo -- gohugo.io</generator>
-        <language>zh-CN</language>
-        <lastBuildDate>Wed, 09 Nov 2022 16:13:09 +0800</lastBuildDate><atom:link href="https://alcatraz1337.github.io/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <language>zh-cn</language>
+        <lastBuildDate>Wed, 09 Nov 2022 16:13:09 +0800</lastBuildDate><atom:link href="https://demo.stack.jimmycai.com/tags/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>人</title>
-        <link>https://alcatraz1337.github.io/tags/%E4%BA%BA/</link>
+        <link>https://demo.stack.jimmycai.com/tags/%E4%BA%BA/</link>
         <pubDate>Wed, 09 Nov 2022 16:13:09 +0800</pubDate>
         
-        <guid>https://alcatraz1337.github.io/tags/%E4%BA%BA/</guid>
+        <guid>https://demo.stack.jimmycai.com/tags/%E4%BA%BA/</guid>
         <description></description>
         </item>
         <item>
         <title>随想</title>
-        <link>https://alcatraz1337.github.io/tags/%E9%9A%8F%E6%83%B3/</link>
+        <link>https://demo.stack.jimmycai.com/tags/%E9%9A%8F%E6%83%B3/</link>
         <pubDate>Wed, 09 Nov 2022 16:13:09 +0800</pubDate>
         
-        <guid>https://alcatraz1337.github.io/tags/%E9%9A%8F%E6%83%B3/</guid>
+        <guid>https://demo.stack.jimmycai.com/tags/%E9%9A%8F%E6%83%B3/</guid>
         <description></description>
         </item>
         <item>
         <title>忏悔</title>
-        <link>https://alcatraz1337.github.io/tags/%E5%BF%8F%E6%82%94/</link>
+        <link>https://demo.stack.jimmycai.com/tags/%E5%BF%8F%E6%82%94/</link>
         <pubDate>Tue, 11 May 2021 18:43:31 +0900</pubDate>
         
-        <guid>https://alcatraz1337.github.io/tags/%E5%BF%8F%E6%82%94/</guid>
+        <guid>https://demo.stack.jimmycai.com/tags/%E5%BF%8F%E6%82%94/</guid>
         <description></description>
         </item>
         <item>
         <title>童年</title>
-        <link>https://alcatraz1337.github.io/tags/%E7%AB%A5%E5%B9%B4/</link>
+        <link>https://demo.stack.jimmycai.com/tags/%E7%AB%A5%E5%B9%B4/</link>
         <pubDate>Tue, 11 May 2021 18:43:31 +0900</pubDate>
         
-        <guid>https://alcatraz1337.github.io/tags/%E7%AB%A5%E5%B9%B4/</guid>
+        <guid>https://demo.stack.jimmycai.com/tags/%E7%AB%A5%E5%B9%B4/</guid>
         <description></description>
         </item>
         
