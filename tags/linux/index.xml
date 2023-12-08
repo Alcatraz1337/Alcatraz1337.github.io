@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Linux on 岛</title>
+        <link>https://demo.stack.jimmycai.com/tags/linux/</link>
+        <description>Recent content in Linux on 岛</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <lastBuildDate>Fri, 08 Dec 2023 16:04:05 +0800</lastBuildDate><atom:link href="https://demo.stack.jimmycai.com/tags/linux/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>使用 Ubuntu 22.04 x86 在 索尼 Spresense 开发板上安装 micro-ROS</title>
+        <link>https://demo.stack.jimmycai.com/p/%E4%BD%BF%E7%94%A8-ubuntu-22.04-x86-%E5%9C%A8-%E7%B4%A2%E5%B0%BC-spresense-%E5%BC%80%E5%8F%91%E6%9D%BF%E4%B8%8A%E5%AE%89%E8%A3%85-micro-ros/</link>
+        <pubDate>Fri, 08 Dec 2023 16:04:05 +0800</pubDate>
+        
+        <guid>https://demo.stack.jimmycai.com/p/%E4%BD%BF%E7%94%A8-ubuntu-22.04-x86-%E5%9C%A8-%E7%B4%A2%E5%B0%BC-spresense-%E5%BC%80%E5%8F%91%E6%9D%BF%E4%B8%8A%E5%AE%89%E8%A3%85-micro-ros/</guid>
+        <description>&lt;blockquote&gt;
+&lt;p&gt;写在前面：这个是我在学校里大概围绕着研究的项目，跟索尼 Spresense 开发板有关系。要用到索尼的板子和 ROS，进行一些边缘的机器人运行和操控。在这里记录一下步骤，以方便后续需要。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;前置环境准备&#34;&gt;前置环境准备&lt;/h2&gt;
+&lt;h3 id=&#34;ubuntu-2204-版本上安装-ros-humble&#34;&gt;Ubuntu 22.04 版本上，安装 ros-humble&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;换源，将 &lt;code&gt;/etc/apt/souces.list&lt;/code&gt; 备份后全部替换为&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;# 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy main restricted universe multiverse
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy main restricted universe multiverse
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-updates main restricted universe multiverse
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-updates main restricted universe multiverse
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-backports main restricted universe multiverse
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;# deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-backports main restricted universe multiverse
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;deb http://security.ubuntu.com/ubuntu/ jammy-security main restricted universe multiverse
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;# deb-src http://security.ubuntu.com/ubuntu/ jammy-security main restricted universe multiverse
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;# 预发布软件源，不建议启用
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;# deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-proposed main restricted universe multiverse
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;# # deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-proposed main restricted universe multiverse
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;添加 ROS 源及安全证书&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo apt update &amp;amp;&amp;amp; sudo apt install curl gnupg lsb-release
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;echo &amp;#34;deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(source /etc/os-release &amp;amp;&amp;amp; echo $UBUNTU_CODENAME) main&amp;#34; | sudo tee /etc/apt/sources.list.d/ros2.list &amp;gt; /dev/null
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;更新源并安装ROS&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo apt update &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo apt upgrade
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo apt install ros-humble-desktop
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo apt install ros-humble-ros-base
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;设置环境变量&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;source /opt/ros/humble/setup.bash
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&amp;lt;可选&amp;gt;: 将设置环境变量写入 shell 启动脚本：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;echo &amp;#34;source /opt/ros/humble/setup.bash&amp;#34; &amp;gt;&amp;gt; ~/.bashrc
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;测试：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;打开一个终端，并输入: &lt;code&gt;ros2 run demo_nodes_cpp talker&lt;/code&gt;，终端中开始不断输出&lt;/li&gt;
+&lt;li&gt;打开另一个终端，并输入: &lt;code&gt;ros2 run demo_nodes_py listener&lt;/code&gt;，终端开始不断输出另一个节点发出的内容，则环境配置正确。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;在-ubuntu-2204-中安装-arduino-ide-和-sony-spresense-开发板库&#34;&gt;在 Ubuntu 22.04 中安装 Arduino IDE 和 Sony Spresense 开发板库&lt;/h3&gt;
+&lt;p&gt;从官网中下载最新的 Arduino IDE：&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.arduino.cc/en/software&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.arduino.cc/en/software&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;linux-usb-串口配置&#34;&gt;Linux USB 串口配置&lt;/h4&gt;
+&lt;p&gt;将用户添加到 &lt;code&gt;dialout&lt;/code&gt; 组中: &lt;code&gt;sudo usermod -a -G dialout $USER&lt;/code&gt;，注销用户并重新登录以使用新设置&lt;/p&gt;
+&lt;h4 id=&#34;安装-spresense-arduino-库&#34;&gt;安装 Spresense Arduino 库&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;打开安装好的 Arduino IDE&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;在[文件 - 首选项]中打开首选项&lt;img src=&#34;https://developer.sony.com/spresense/development-guides/images/tutorial_arduino_open_preferences.png&#34; alt=&#34;arduino pref&#34; style=&#34;zoom:100%;&#34; /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;将以下 URL 复制并粘贴到名为&lt;code&gt;Additional Boards Managers URLs:&lt;/code&gt;的字段中：&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/sonydevworld/spresense-arduino-compatible/releases/download/generic/package_spresense_index.json&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://github.com/sonydevworld/spresense-arduino-compatible/releases/download/generic/package_spresense_index.json&lt;/a&gt;&lt;/p&gt;
+ &lt;img src=&#34;https://developer.sony.com/spresense/development-guides/images/tutorial_arduino_preferences_add_bm_url.png&#34; alt=&#34;arduino add source&#34; style=&#34;zoom:100%;&#34; /&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;打开&lt;code&gt;Boards Manager&lt;/code&gt; [工具→Board→Boards Manager]。&lt;/p&gt;
+ &lt;img src=&#34;https://developer.sony.com/spresense/development-guides/images/tutorial_arduino_open_boardmanager.png&#34; alt=&#34;arduino board manager&#34; style=&#34;zoom:100%;&#34; /&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;搜索 Spresense。在列表中找到后，选择它并单击安装。如果软件包列表下载失败，可能的原因是您的网络连接使用代理。要设置代理，请导航至[网络→文件→首选项]。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://developer.sony.com/spresense/development-guides/images/tutorial_arduino_boardmanager_spresense_install.jpg&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;arduino add spresense&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;在-ubuntu-环境中安装-micro-ros-agent-docker-环境&#34;&gt;在 Ubuntu 环境中安装 &lt;code&gt;micro-ROS-agent&lt;/code&gt; docker 环境&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;在终端输入: &lt;code&gt;sudo apt install docker docker-compose&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;安装并运行 &lt;code&gt;micro-ROS-agent&lt;/code&gt; 的 docker 镜像：&lt;code&gt;sudo docker run -it --rm -v /dev:/dev --privileged --net=host microros/micro-ros-agent:humble serial --dev /dev/ttyUSB0&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;当看见输出如：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; [1702026333.143516] info     | TermiosAgentLinux.cpp | init                     | running...             | fd: 3
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; [1702026333.143919] info     | Root.cpp           | set_verbose_level        | logger setup           | verbose_level: 4
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;时，则已经在 Ubuntu 上安装好带有 &lt;code&gt;micro-ROS2&lt;/code&gt; 的 docker 镜像，此时可停止控制台程序。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;在-ubuntu-内的-arduino-ide-中编写脚本并烧录至-spresense&#34;&gt;在 Ubuntu 内的 Arduino IDE 中编写脚本并烧录至 Spresense&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;下载官方提供的 micro-ROS 相关库文件，以 &lt;code&gt;.zip&lt;/code&gt; 格式打包下载，解压至自己方便的目录下。&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/TE-YoshinoriOota/micro_ros_arduino&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://github.com/TE-YoshinoriOota/micro_ros_arduino&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;指定安装刚才下载的库
+&lt;img src=&#34;https://demo.stack.jimmycai.com/p/%E4%BD%BF%E7%94%A8-ubuntu-22.04-x86-%E5%9C%A8-%E7%B4%A2%E5%B0%BC-spresense-%E5%BC%80%E5%8F%91%E6%9D%BF%E4%B8%8A%E5%AE%89%E8%A3%85-micro-ros/ard_include_spre_lib.png&#34;
+	width=&#34;743&#34;
+	height=&#34;475&#34;
+	srcset=&#34;https://demo.stack.jimmycai.com/p/%E4%BD%BF%E7%94%A8-ubuntu-22.04-x86-%E5%9C%A8-%E7%B4%A2%E5%B0%BC-spresense-%E5%BC%80%E5%8F%91%E6%9D%BF%E4%B8%8A%E5%AE%89%E8%A3%85-micro-ros/ard_include_spre_lib_hu636f757937af570afb90c8b286c9819d_149663_480x0_resize_box_3.png 480w, https://demo.stack.jimmycai.com/p/%E4%BD%BF%E7%94%A8-ubuntu-22.04-x86-%E5%9C%A8-%E7%B4%A2%E5%B0%BC-spresense-%E5%BC%80%E5%8F%91%E6%9D%BF%E4%B8%8A%E5%AE%89%E8%A3%85-micro-ros/ard_include_spre_lib_hu636f757937af570afb90c8b286c9819d_149663_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;arduino import spresense library&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;156&#34;
+		data-flex-basis=&#34;375px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;下载由官方提供的示例代码文件：&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/TE-YoshinoriOota/Spresense-microROS-Seminar&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://github.com/TE-YoshinoriOota/Spresense-microROS-Seminar&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;在 IDE 中选择目标开发板为 Spresense，并将示例文件夹 &lt;code&gt;sketches&lt;/code&gt; 中的 &lt;code&gt;spresense_micro-ros_publisher_serial.ino&lt;/code&gt; 的内容复制到编辑器里（或者直接通过 IDE 打开），选择左上方的烧录按钮（右箭头→）将脚本烧录制 Spresense 中。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;烧录时，需要注意不要有其他程序占用端口。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://demo.stack.jimmycai.com/p/%E4%BD%BF%E7%94%A8-ubuntu-22.04-x86-%E5%9C%A8-%E7%B4%A2%E5%B0%BC-spresense-%E5%BC%80%E5%8F%91%E6%9D%BF%E4%B8%8A%E5%AE%89%E8%A3%85-micro-ros/ard_spre.png&#34;
+	width=&#34;498&#34;
+	height=&#34;358&#34;
+	srcset=&#34;https://demo.stack.jimmycai.com/p/%E4%BD%BF%E7%94%A8-ubuntu-22.04-x86-%E5%9C%A8-%E7%B4%A2%E5%B0%BC-spresense-%E5%BC%80%E5%8F%91%E6%9D%BF%E4%B8%8A%E5%AE%89%E8%A3%85-micro-ros/ard_spre_huf68a788777eb94ddfbe2d9697f4a7807_39333_480x0_resize_box_3.png 480w, https://demo.stack.jimmycai.com/p/%E4%BD%BF%E7%94%A8-ubuntu-22.04-x86-%E5%9C%A8-%E7%B4%A2%E5%B0%BC-spresense-%E5%BC%80%E5%8F%91%E6%9D%BF%E4%B8%8A%E5%AE%89%E8%A3%85-micro-ros/ard_spre_huf68a788777eb94ddfbe2d9697f4a7807_39333_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;arduino select spresense&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;139&#34;
+		data-flex-basis=&#34;333px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;ol start=&#34;5&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;再次通过在 Ubuntu 终端中输入 &lt;code&gt;sudo docker run -it --rm -v /dev:/dev --privileged --net=host microros/micro-ros-agent:humble serial --dev /dev/ttyUSB0&lt;/code&gt; 指令启动 micro-ROS-agent。&lt;/p&gt;
+&lt;p&gt;大致输出如下图：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://demo.stack.jimmycai.com/p/%E4%BD%BF%E7%94%A8-ubuntu-22.04-x86-%E5%9C%A8-%E7%B4%A2%E5%B0%BC-spresense-%E5%BC%80%E5%8F%91%E6%9D%BF%E4%B8%8A%E5%AE%89%E8%A3%85-micro-ros/spre_output.png&#34;
+	width=&#34;1475&#34;
+	height=&#34;205&#34;
+	srcset=&#34;https://demo.stack.jimmycai.com/p/%E4%BD%BF%E7%94%A8-ubuntu-22.04-x86-%E5%9C%A8-%E7%B4%A2%E5%B0%BC-spresense-%E5%BC%80%E5%8F%91%E6%9D%BF%E4%B8%8A%E5%AE%89%E8%A3%85-micro-ros/spre_output_huc92fe3f789d717d11f64ce7155e51bbf_94735_480x0_resize_box_3.png 480w, https://demo.stack.jimmycai.com/p/%E4%BD%BF%E7%94%A8-ubuntu-22.04-x86-%E5%9C%A8-%E7%B4%A2%E5%B0%BC-spresense-%E5%BC%80%E5%8F%91%E6%9D%BF%E4%B8%8A%E5%AE%89%E8%A3%85-micro-ros/spre_output_huc92fe3f789d717d11f64ce7155e51bbf_94735_1024x0_resize_box_3.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;spresense_output&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;719&#34;
+		data-flex-basis=&#34;1726px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;打开一个新的终端窗口，并输入 &lt;code&gt;ros2 topic list&lt;/code&gt; 和 &lt;code&gt;ros2 topic echo /micro_ros_arduino_node_publisher &lt;/code&gt; 可以检查来自 Spresense 发出的数据。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;以上为止，是一个粗略的在 Spresense 上部署 micro-ROS2 的整理。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;参考链接：&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/TE-YoshinoriOota/micro_ros_arduino&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;TE-YoshinoriOota/micro_ros_arduino: micro-ROS library for Arduino (github.com)&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/TE-YoshinoriOota/Spresense-microROS-Seminar&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;TE-YoshinoriOota/Spresense-microROS-Seminar: Spresense microROS/ROS2(humble) Seminar materials (github.com)&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://developer.sony.com/spresense/development-guides/arduino_set_up_en.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Spresense Arduino Library Getting Started Guide (sony.com)&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

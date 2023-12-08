@@ -6,7 +6,15 @@
         <description>Recent content in Categories on 岛</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Wed, 08 Nov 2023 20:56:32 +0800</lastBuildDate><atom:link href="https://demo.stack.jimmycai.com/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 08 Dec 2023 16:04:05 +0800</lastBuildDate><atom:link href="https://demo.stack.jimmycai.com/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>学习</title>
+        <link>https://demo.stack.jimmycai.com/categories/learning/</link>
+        <pubDate>Fri, 08 Dec 2023 16:04:05 +0800</pubDate>
+        
+        <guid>https://demo.stack.jimmycai.com/categories/learning/</guid>
+        <description>&lt;img src="https://plus.unsplash.com/premium_photo-1677567996070-68fa4181775a?q=80&amp;w=1744&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Featured image of post 学习" /&gt;</description>
+        </item>
+        <item>
         <title>碎片</title>
         <link>https://demo.stack.jimmycai.com/categories/fragments/</link>
         <pubDate>Wed, 08 Nov 2023 20:56:32 +0800</pubDate>
