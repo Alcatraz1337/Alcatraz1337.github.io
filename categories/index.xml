@@ -6,7 +6,15 @@
         <description>Recent content in Categories on 岛</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
-        <lastBuildDate>Fri, 08 Dec 2023 16:04:05 +0800</lastBuildDate><atom:link href="https://demo.stack.jimmycai.com/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 31 Dec 2023 22:31:44 +0800</lastBuildDate><atom:link href="https://demo.stack.jimmycai.com/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>闲</title>
+        <link>https://demo.stack.jimmycai.com/categories/thoughts/</link>
+        <pubDate>Sun, 31 Dec 2023 22:31:44 +0800</pubDate>
+        
+        <guid>https://demo.stack.jimmycai.com/categories/thoughts/</guid>
+        <description>&lt;img src="https://images.unsplash.com/photo-1471107340929-a87cd0f5b5f3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1266&amp;q=80" alt="Featured image of post 闲" /&gt;</description>
+        </item>
+        <item>
         <title>学习</title>
         <link>https://demo.stack.jimmycai.com/categories/learning/</link>
         <pubDate>Fri, 08 Dec 2023 16:04:05 +0800</pubDate>
@@ -21,14 +29,6 @@
         
         <guid>https://demo.stack.jimmycai.com/categories/fragments/</guid>
         <description>&lt;img src="https://images.unsplash.com/photo-1560963958-e2268d292af2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=701&amp;q=80" alt="Featured image of post 碎片" /&gt;</description>
-        </item>
-        <item>
-        <title>闲</title>
-        <link>https://demo.stack.jimmycai.com/categories/thoughts/</link>
-        <pubDate>Sun, 28 Nov 2021 16:08:50 +0800</pubDate>
-        
-        <guid>https://demo.stack.jimmycai.com/categories/thoughts/</guid>
-        <description>&lt;img src="https://images.unsplash.com/photo-1471107340929-a87cd0f5b5f3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1266&amp;q=80" alt="Featured image of post 闲" /&gt;</description>
         </item>
         <item>
         <title>随手拍</title>
